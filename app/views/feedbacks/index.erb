@@ -1,0 +1,8 @@
+<h1> all feedbcaks </h1>
+
+<% @feedbacks.each do |f| %>
+	<li>rating : <%= f.rating %>  ,  comments : <%= f.comment %>  </li>
+<% end %>
+
+
+<%= link_to 'new', '/feedbacks/new' %>
