@@ -1,0 +1,14 @@
+<h1> new feedabck </h1>
+
+
+
+
+<%= form_for @feedback do |f| %>
+<p><%= f.label :rating %>
+<%= f.number_field :rating, in: 1..5, step:1 %></p>
+<p><%= f.label :comment %>
+<%= f.text_area :comment %></p>
+<%= f.submit 'Add'%>
+<% end %>
+
+<%= link_to 'Feedbacks', '/feedbacks' %>
