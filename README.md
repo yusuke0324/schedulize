@@ -1,24 +1,37 @@
-# README
+#SchedulEyes#
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Brought to you by Decided, a software development team committed to engineering thoughtful, elegant applications.
 
-Things you may want to cover:
+Decided are
+  Meriç Bal
+  Eric O'Rear
+  Yusuke Takeuchi
+  Joe Viveiros
+  Matt Weingarten
 
-* Ruby version
+Synopsis
 
-* System dependencies
+  SchedulEyes is an appointment optimization app focused on a fluid, friendly user experience. 
 
-* Configuration
+Motivation
 
-* Database creation
+  Many education institutions rely on email, word-of-mouth, and other awkward and informal scheduling options for coordinating office hours availability.  SchedulEyes marries an asynchronous user experience with an intelligent back end to create a simple, powerful, and intuitive scheduling experience.
 
-* Database initialization
+MVP
 
-* How to run the test suite
+  *Users can be students/mentors
+  *They can register and login with unique information
+  *Students and Mentors have different user experiences
+  *Appointments are between half an hour and two hours long
+  *Moderators can create appointment Slots, available to up to 5 students
+  *Mentors and students can both view their Commitments on their profile pages
+  *Mentors and students can both provide feedback about the Appointment, with a numerical rating and text description
+  
+Access
 
-* Services (job queues, cache servers, search engines, etc.)
+  SchedulEyes is a web app supported on Chrome, Safari, IE8 and above, and Firefox.
 
-* Deployment instructions
+License
 
-* ...
+  MIT
+
