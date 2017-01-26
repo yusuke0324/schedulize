@@ -14,4 +14,10 @@ validates :password, confirmation: true, if: -> { new_record? || changes[:crypte
 validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
 validates :email, uniqueness: {message: "%{value} has already been taken."}, presence: true
+
+  def active_my_slots
+    self.slots.select{|slot| slot.end_time > Time.now}
+  end
 end
+
+
