@@ -1,6 +1,14 @@
 class SlotsController < ApplicationController
   helper_method :days_in_month, :days_in_current_month, :slots_in_day
 
+  def show
+    @slot = Slot.find(params[:id])
+  end
+
+  def destroy
+
+  end
+
   def month_index
     params[:month] = params[:month].to_i
     params[:year] = params[:year].to_i
