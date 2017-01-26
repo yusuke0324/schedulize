@@ -9,6 +9,6 @@ Rails.application.routes.draw do
 
   resources :slots
 
-
+  resources :appointments
   resources :feedbacks
 end
