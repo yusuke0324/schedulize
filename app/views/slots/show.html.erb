@@ -1,0 +1,18 @@
+<h1>Slot for <%= month_string(@slot.start_time.month) + @slot.start_time.day %> </h1>
+
+<section class="slot-info">
+  <div>
+    <%= @slot.title %>SLOT TITLE
+    <%= @slot.start_time %>SLOT START TIME
+    <%= @slot.end_time %>SLOT END TIME
+    <%= @slot.mentor.username %>
+  </div>
+</section>
+
+<%= link_to "Make an Appointment", new_appointment_path(@appointment) %>
+<% if current_user.mentor? == true %>
+  <%= link_to "Delete this Slot", slot_path, method: delete %>
+<% end %>
+<section>
+  
+</section>
