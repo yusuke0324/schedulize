@@ -1,22 +1,20 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :require_login
 
 
   private
-
   def require_login
     unless logged_in?
       flash[:error] = "You must be logged in to access this section"
-      redirect_to new_user_url
+      redirect_to new_session_url
     end
   end
 
-  def correct_user?(user)
-    user == current_user
-  end
+   def correct_user(user)
+     unless user == current_user
+        flash[:alert] = "You are unauthorized to view this page"
+        redirect_to new_session_url
+     end
+   end
 
-  def is_mentor?
-    curent_user.mentor
-  end
 end

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+before_action :require_login, only: :show
   def new
     if current_user
       redirect_to user_path(current_user)
@@ -8,17 +8,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find_by(id: params[:id])
-  end
 
   def show
-    if current_user == nil
-      redirect_to new_user_url
-    else
       @user = User.find_by(id: params[:id])
       correct_user(@user)
-    end
   end
 
   def create
