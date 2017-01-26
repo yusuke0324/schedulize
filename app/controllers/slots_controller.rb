@@ -20,6 +20,7 @@ class SlotsController < ApplicationController
     @day = params[:day]
     @date = Date.new(@year,@month,@day)
     @slots = slots_in_day(@date)
+
   end
 
 
@@ -36,4 +37,7 @@ class SlotsController < ApplicationController
   def slots_in_day(date)
     Slot.all.select{|instance| instance.start_time.to_date == date}
   end
+
+
+
 end

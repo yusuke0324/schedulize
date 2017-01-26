@@ -1,5 +1,10 @@
 module SlotsHelper
 
+  def amount_of_slots_in_day(date)
+    Slot.all.select{|instance| instance.start_time.to_date == date}.length
+  end
+
+
   def month_string(num)
     if num == 1
       "January"
@@ -14,7 +19,7 @@ module SlotsHelper
     elsif num == 6
       "June"
     elsif num == 7
-      "Juli"
+      "July"
     elsif num == 8
       "August"
     elsif num == 9
@@ -26,5 +31,25 @@ module SlotsHelper
     elsif num == 12
       "December"
     end
+  end
+
+  def display_time(datetime)
+    t = datetime.to_time
+    min = t.min.to_s
+    if min.to_s.length == 1 then min = "0" + min end
+    "#{t.hour}:#{min}"
+  end
+
+
+  def amount_of_students(slot)
+    slot.students.count
+  end
+
+  def full?(slot)
+    slot.capacity <= amount_of_students
+  end
+
+  def sort_by_start(slots)
+    slots.sort_by(&:start_time).reverse
   end
 end
