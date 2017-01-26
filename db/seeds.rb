@@ -5,7 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'date'
+Feedback.destroy_all
+User.destroy_all
+Slot.destroy_all
 
+now = Time.now
+tomorrow = now + 1.day
+yesterday = now - 1.day
+user = User.create(first_name: 'Seed', last_name: 'Mentor', phase: 1, mentor: true, email: 'mentor@seed.com', password: 'password', password_confirmation: 'password')
 
-Feedback.create(rating: 1, comment: 'AAA', appointment_id: 1, user_id: 1)
-Feedback.create(rating: 5, comment: 'BBB', appointment_id: 2, user_id: 2	)
+5.times do |i|
+  Slot.create(title: "SeedSlot#{i}", capacity: i, start_time: now, end_time: tomorrow, mentor: user )
+end
+
+# Feedback.create(rating: 1, comment: 'AAA', appointment_id: 1, user_id: 1)
+# Feedback.create(rating: 5, comment: 'BBB', appointment_id: 2, user_id: 2	)

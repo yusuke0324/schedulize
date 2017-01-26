@@ -1,7 +1,15 @@
 class UsersController < ApplicationController
 
   def new
-    @user = User.new
+    if current_user
+      redirect_to user_path(current_user)
+    else
+      @user = User.new
+    end
+  end
+
+  def show
+    @user = User.find_by(id: params[:id])
   end
 
   def show
@@ -35,6 +43,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :phase, :mentor)
   end
 end

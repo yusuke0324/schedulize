@@ -16,7 +16,25 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
 
-  <body>
+
+
+
+  <body id="main-body">
+
+
+  <div id="menubar">
+    <ul>
+      <% if current_user%>
+        <li class="links"><%=link_to current_user.first_name, user_path(current_user)%></li>
+        <li class="links"><%=link_to "Logout", session_path(current_user), method: :delete%></li>
+      <%else%>
+        <li class="links" > <%= link_to 'Login', '/sessions/new' %> </li>
+        <li class="links" > <%= link_to 'Register', '/users/new' %> </li>
+      <%end%>
+    </ul>
+  </div>
+
+
 
     <%flash.each do |key, value|%>
       <div class="alert alert-<%=key%>">
