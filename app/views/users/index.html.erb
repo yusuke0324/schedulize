@@ -1,4 +1,9 @@
 <h1> Welcome to SchedulEyes </h1>
 
-<%= link_to "Register", new_user_path%>
-<%= link_to "Sign In", new_session_path%> 
+<%if current_user%>
+  <%=link_to current_user.username, user_path(current_user)%>
+  <%=link_to "Logout", session_path(current_user), method: :delete%>
+<%else%>
+  <%= link_to "Register", new_user_path%>
+  <%= link_to "Sign In", new_session_path%>
+<%end%>
