@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170125195159) do
+
+ActiveRecord::Schema.define(version: 20170126002434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "slot_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slot_id"], name: "index_appointments_on_slot_id", using: :btree
+    t.index ["user_id"], name: "index_appointments_on_user_id", using: :btree
+  end
 
   create_table "feedbacks", force: :cascade do |t|
     t.string   "comment"
@@ -36,7 +46,7 @@ ActiveRecord::Schema.define(version: 20170125195159) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username",         null: false
-    t.string   "phases"
+    t.string   "phase"
     t.boolean  "mentor"
     t.string   "email",            null: false
     t.string   "crypted_password"

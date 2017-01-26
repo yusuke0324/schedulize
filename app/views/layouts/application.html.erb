@@ -16,13 +16,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
 
-  <body>
+
+
+  
+  <body id="main-body">
+  
+
+  <div id="menubar">
+    <ul>
+      <li class="links" > <%= link_to 'Login', '/sessions/new' %> </li>
+      <li class="links" > <%= link_to 'Register', '/users/new' %> </li>
+    </ul>
+  </div>
+
+  
 
     <%flash.each do |key, value|%>
       <div class="alert alert-<%=key%>">
           <%=value%>
       </div>
-    <%end%>  
+    <%end%>
+
+
     <%= yield %>
   </body>
 </html>

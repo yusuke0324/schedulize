@@ -1,0 +1,17 @@
+
+<h3><%=  month_string(@month)+ " #{@day}"  %></h3>
+
+<ul>
+  <%  sort_by_start(@slots).each do |slot|%>
+    <li>
+      <h4><%=slot.title %></h4>
+      <p>
+        From <%= display_time(slot.start_time)%> to <%= display_time(slot.end_time) %>
+      </p>
+    </li>
+  <% end %>
+</ul>
+
+
+
+<!-- # Add button for new slot if a mentor -->
