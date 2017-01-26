@@ -3,8 +3,8 @@
 
 <% (1..@num_of_days).each do |day| %>
 
-  <%= button_to "#{day}","/slots/#{@year}/#{@month}/#{day}",
-   method: :get  %><br>
+  <span><%= button_to "#{day}","/slots/#{@year}/#{@month}/#{day}",
+   method: :get  %></span>
 <% end %>
 
 
