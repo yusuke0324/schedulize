@@ -3,25 +3,27 @@
 
 <% (1..@num_of_days).each do |day| %>
 
-  <span><%= button_to "#{day}","/slots/#{@year}/#{@month}/#{day}",
+  <span class="day-button" id ="<%=day%>"><%= button_to "#{day}
+  Office hours: #{amount_of_slots_in_day(Date.new(@year,@month,day))}  " ,
+  "/calender/#{@year}/#{@month}/#{day}",
    method: :get  %></span>
 <% end %>
 
 
 
 <% if @month == 12 %>
-  <%= button_to "next month","/slots/#{@year + 1}/#{1}",
+  <%= button_to "next month","/calender/#{@year + 1}/#{1}",
    method: :get  %>
-   <%= button_to "previous months","/slots/#{@year}/#{@month-1}",
+   <%= button_to "previous months","/calender/#{@year}/#{@month-1}",
     method: :get  %>
 <% elsif @month == 1  %>
-  <%= button_to "next month","/slots/#{@year}/#{@month+1}",
+  <%= button_to "next month","/calender/#{@year}/#{@month+1}",
    method: :get  %>
-   <%= button_to "previous months","/slots/#{@year-1}/12",
+   <%= button_to "previous months","/calender/#{@year-1}/12",
     method: :get  %>
 <% else %>
-  <%= button_to "next month","/slots/#{@year}/#{@month+1}",
+  <%= button_to "next month","/calender/#{@year}/#{@month+1}",
    method: :get  %>
-   <%= button_to "previous months","/slots/#{@year}/#{@month-1}",
+   <%= button_to "previous months","/calender/#{@year}/#{@month-1}",
     method: :get  %>
 <% end %>

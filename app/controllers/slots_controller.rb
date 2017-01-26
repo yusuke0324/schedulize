@@ -39,4 +39,5 @@ class SlotsController < ApplicationController
   end
 
 
+
 end

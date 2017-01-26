@@ -1,5 +1,10 @@
 module SlotsHelper
 
+  def amount_of_slots_in_day(date)
+    Slot.all.select{|instance| instance.start_time.to_date == date}.length
+  end
+
+
   def month_string(num)
     if num == 1
       "January"
