@@ -1,6 +1,10 @@
-<h1> Hi, <%=@user.username%></h1>
-<h2>You're commitments...</h2>
-<ul>
+<% if current_user = @user%>
+  <h1> Hi, <%=@user.first_name%>!</h1>
+    <h2> <%=@user.phase%></h2>
+<%else%>
+  <h1> <%=@user.first_name%> <%=@user.last_name%></h1>
+    <h2><%=@user.phase%></h2>
+<%end%>
 <% @user.slots.each do |slot| %>
   <li>
   <p><strong><%= slot.title %></strong></p>
@@ -9,10 +13,3 @@
   </li>
 <% end %>
 </ul>
-<% if current_user = @user%>
-  <h1> Hi, <%=@user.first_name%>!</h1>
-    <h2> <%=@user.phase%></h2>
-<%else%>
-  <h1> <%=@user.first_name%> <%=@user.last_name%></h1>
-    <h2><%=@user.phase%></h2>
-<%end%>
