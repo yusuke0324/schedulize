@@ -10,6 +10,12 @@ class SlotsController < ApplicationController
 
   end
 
+  def new
+    # @hour = params[:hour]
+    # @min = params[:min]
+    # @slot = Slot.new(params[:slot])
+  end
+  
   def create
 
   end

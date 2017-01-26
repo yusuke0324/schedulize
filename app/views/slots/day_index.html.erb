@@ -2,16 +2,16 @@
 <h3><%=  month_string(@month)+ " #{@day}"  %></h3>
 
 <ul>
-  <%  sort_by_start(@slots).each do |slot|%>
+  <% slot_times.each do |slot|  %>
     <li>
-      <h4><%=slot.title %></h4>
-      <p>
-        From <%= display_time(slot.start_time)%> to <%= display_time(slot.end_time) %>
-      </p>
+      <%=link_to "#{slot.hour}:#{string_increase_for_min(slot.min)}", new_slot_path({slot: {start_time: 'hoge'}})%> <br>
     </li>
+      <ul>
+        <%sort_by_start(slots_in_this_time(@year,@month,@day,slot.hour,slot.min)).each do |office_hours|%>
+          <li>
+            <%=link_to "#{office_hours.title}" , slot_path(office_hours) %>
+          </li>
+        <% end %>
+      </ul>
   <% end %>
 </ul>
-
-
-
-<!-- # Add button for new slot if a mentor -->
