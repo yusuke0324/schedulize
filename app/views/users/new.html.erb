@@ -1,6 +1,21 @@
+<h1> Welcome to SchedulEyes </h1>
+<%if current_user%>
+  <%=link_to current_user.username, user_path(current_user)%>
+  <%=link_to "Logout", session_path(current_user), method: :delete%>
+<%else%>
+  <%= link_to "Sign In", new_session_path%>
+<%end%>
+
+
+
+
+
 <%= form_for @user do |f| %>
-  <%=f.label :username%>:
-  <%=f.text_field :username%></br>
+  <%=f.label :first_name%>:
+  <%=f.text_field :first_name%></br>
+
+  <%=f.label :last_name%>:
+  <%=f.text_field :last_name%></br>
 
   <%=f.label :email %>:
   <%=f.text_field :email%></br>
