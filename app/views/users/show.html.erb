@@ -5,7 +5,7 @@
   <h1> <%=@user.first_name%> <%=@user.last_name%></h1>
     <h2>Phase: <%=@user.phase%></h2>
 <%end%>
-<% @user.slots.each do |slot| %>
+<% @user.active_my_slots.each do |slot| %>
   <li>
   <p><strong><%= slot.title %></strong></p>
   <p><%= slot.start_time %> ~ <%= slot.end_time %></p>
