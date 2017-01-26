@@ -2,9 +2,9 @@
 <h3>Creating office hours</h3>
 <%= form_for :slot  do |f| %>
   From:
-  <%=datetime_field(:slot, :start_time)%>
+  <%=datetime_select(:slot, :start_time)%><br /><br />
   To:
-  <%=datetime_field(:slot, :end_time)%> <br><br>
+  <%=datetime_select(:slot, :end_time)%> <br><br>
   Title:
   <%= f.text_field :title%>
   Capacity:
