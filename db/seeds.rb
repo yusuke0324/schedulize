@@ -5,7 +5,3 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-
-Feedback.create(rating: 1, comment: 'AAA', appointment_id: 1, user_id: 1)
-Feedback.create(rating: 5, comment: 'BBB', appointment_id: 2, user_id: 2	)
