@@ -35,7 +35,7 @@ module SlotsHelper
 
   def display_time(datetime)
     t = datetime.to_time
-    min = t.min.to_s
+    min = string_increase_for_min(t.min)
     if min.to_s.length == 1 then min = "0" + min end
     "#{t.hour}:#{min}"
   end
@@ -52,4 +52,36 @@ module SlotsHelper
   def sort_by_start(slots)
     slots.sort_by(&:start_time).reverse
   end
+
+  def slot_times
+    times = []
+    minutes = 0
+    hours = 9
+    until hours == 18
+      if minutes == 60
+        hours += 1
+        minutes = 0
+      end
+        t = Time.new(2002, 10, 31, hours, minutes, 0)
+        times << t
+      minutes += 30
+    end
+    times
+  end
+
+  def string_increase_for_min(min)
+    min = min.to_s
+    if min.length == 1
+       min = "0" + min
+    else
+      min
+    end
+  end
+
+  def slots_in_this_time(year,month,day,hour,min)
+    t = Time.new(year,month,day,hour,min)
+    p t
+    Slot.all.select{|slot| slot.start_time <= t && slot.end_time  >= t}
+  end
+
 end

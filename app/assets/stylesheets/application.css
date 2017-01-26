@@ -1,3 +1,4 @@
+/*#menubar {
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -24,27 +25,29 @@
 }
 
 
-#main-body {
+/*#main-body {
     background-color: gray;
     /*color: white;*/
-    padding-top: 80px;
+    /*padding-top: 80px;
     text-align: center;
-}
+}*/
 
 
-.links {
+/*.links {*/
     /*color: red;*/
     /*text-align: center;*/
-    font-family: "Comic Sans MS", serif;
-}
+    /*font-family: "Comic Sans MS", serif;
+}*/*/
 
-ul {
+/*ul {
     background-color: black;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-}
+}*/
+
+/*ul li {
 
 ul li {
     float: left;
@@ -56,6 +59,9 @@ li.links {
     text-align: center;
     padding: 14px 23px;
     text-decoration: none;
+
+}*/*/
+
 }
 
 .centered {
