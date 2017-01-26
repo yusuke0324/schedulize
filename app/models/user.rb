@@ -5,6 +5,7 @@ has_many :feedbacks
 has_many :slots
 has_many :appointments
 
+
 validates :username, presence: true, uniqueness: {message: "%{value} has already been taken"}
 validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
 validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
