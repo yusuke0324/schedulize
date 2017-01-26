@@ -1,26 +1,26 @@
-<h1>Slot for <%= month_string(@slot.start_time.month) + @slot.start_time.day.to_s %> </h1>
+<h1><%= @slot.title %> for <%= month_string(@slot.start_time.month) + " " + @slot.start_time.day.to_s %> </h1>
 
 <section class="slot-info">
   <div>
     Topic: <%= @slot.title %><br>
-    Start Time: <%= @slot.start_time.to_time %><br>
+    Start Time: <%= @slot.start_time.month.to_s + "/" + @slot.start_time.day.to_s + " " + display_time(@slot.start_time) %><br>
     End Time: <%= @slot.end_time.to_time %><br>
     This Slot's Mentor: <%= @mentor.first_name %><br>
     <%=@mentor.first_name%>'s Phase: <%=@mentor.phase%>
   </div>
-  <%= link_to "Make an Appointment", new_appointment_path(@appointment) %>
-  <% if current_user.mentor? == true %>
+
+  <% if current_user != nil && @mentor = current_user %>
     <%= link_to 'Delete this Slot', slot_path(@slot),
               method: :delete,
               data: { confirm: 'Are you sure?' } %>
-  <%else%>
+  <% elsif current_user != nil && current_user.mentor? == false %>
     <%= link_to "Make an Appointment", new_appointment_path(@appointment) %>
   <% end %>
 </section>
 
+<h2>Leave Some Feedback</h2>
 
-
-<section class=new-feedback>
+<section class="new-feedback">
   <%= form_for feedbacks_path do |f| %>
   <p>
     <%= radio_button_tag(:rating, "1") %>
@@ -41,5 +41,14 @@
   <%= f.submit 'Thank you for your ASKful feedback'%>
   <% end %>
 
+  </section>
+
+  <section class="feedback-list">
+    <ul>
+    <%= @slot %>
+      <% @slot.feedbacks do |feedback| %>
+        <li id="feedback-<%= feedback.id %>"><%= feedback %></li>
+      <% end %>
+    </ul>
   </section>
 
