@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   get "/calender/:year/:month", to: "slots#month_index"
   get "/calender/:year/:month/:day", to: "slots#day_index"
-  resources :slots, except: [:edit, :update, :index]
+  resources :slots
   resources :feedbacks
 end
