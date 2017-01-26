@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  authenticates_with_sorcery!
+authenticates_with_sorcery!
+
+PHASES = [1, 2, 3]
 
 has_many :feedbacks
 has_many :slots

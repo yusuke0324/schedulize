@@ -5,6 +5,12 @@
   <%=f.label :email %>:
   <%=f.text_field :email%></br>
 
+  <%=f.label :mentor%>:
+  <%=f.check_box :mentor%></br>
+
+  <%=f.label :phase%>:
+  <%=f.collection_select :phase, User::PHASES, :to_i, :to_i, include_blank: false%></br>
+
   <%=f.label :password%>:
   <%=f.password_field :password%></br>
 
@@ -12,4 +18,4 @@
   <%=f.password_field :password_confirmation%></br>
 
   <%=f.submit "Create Account"%>
-<%end%>  
+<%end%>
