@@ -1,14 +1,26 @@
 class SlotsController < ApplicationController
-  helper_method :days_in_month, :days_in_current_month
+  helper_method :days_in_month, :days_in_current_month, :slots_in_day
 
   def month_index
     params[:month] = params[:month].to_i
     params[:year] = params[:year].to_i
+
     @num_of_days = days_in_current_month(params[:month],params[:year])
     @month = params[:month]
     @year = params[:year]
   end
 
+  def day_index
+    params[:month] = params[:month].to_i
+    params[:year] = params[:year].to_i
+    params[:day] = params[:day].to_i
+
+    @month = params[:month]
+    @year = params[:year]
+    @day = params[:day]
+    @date = Date.new(@year,@month,@day)
+    @slots = slots_in_day(@date)
+  end
 
 
 
@@ -21,4 +33,7 @@ class SlotsController < ApplicationController
     Date.new(year, month, -1).day
   end
 
+  def slots_in_day(date)
+    Slot.all.select{|instance| instane.start_time.to_date == date}
+  end
 end
