@@ -3,6 +3,7 @@ class SlotsController < ApplicationController
 
   def show
     @slot = Slot.find(params[:id])
+    @mentor = @slot.mentor
   end
 
   def destroy
@@ -14,8 +15,9 @@ class SlotsController < ApplicationController
     # @min = params[:min]
     # @slot = Slot.new(params[:slot])
   end
-
+  
   def create
+
   end
 
   def month_index
