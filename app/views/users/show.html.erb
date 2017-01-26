@@ -1,1 +1,11 @@
 <h1> Hi, <%=@user.username%></h1>
+<h2>You're commitments...</h2>
+<ul>
+<% @user.slots.each do |slot| %>
+  <li>
+  <p><strong><%= slot.title %></strong></p>
+  <p><%= slot.start_time %> ~ <%= slot.end_time %></p>
+  <p>Capacity:<%= slot.capacity %></p>
+  </li>
+<% end %>
+</ul>
