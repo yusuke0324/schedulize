@@ -3,9 +3,14 @@ class SlotsController < ApplicationController
 
   def show
     @slot = Slot.find(params[:id])
+    @mentor = @slot.mentor
   end
 
   def destroy
+
+  end
+
+  def create
 
   end
 
