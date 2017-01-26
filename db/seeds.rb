@@ -13,18 +13,25 @@ Slot.destroy_all
 now = Time.now
 tomorrow = now + 1.day
 yesterday = now - 1.day
-user = User.create(first_name: 'Seed', last_name: 'Mentor', phase: 1, mentor: true, email: 'mentor@seed.com', password: 'password', password_confirmation: 'password')
+mentor = User.create(first_name: 'Seed', last_name: 'Mentor', phase: 1, mentor: true, email: 'mentor@seed.com', password: 'password', password_confirmation: 'password')
+
+student = User.create(first_name: 'Seed', last_name: 'Student', phase: 1, mentor: true, email: 'student@seed.com', password: 'password', password_confirmation: 'password')
 
 # create slot with now ~ tomorrow
 5.times do |i|
-  Slot.create(title: "SeedSlot_Active#{i}", capacity: i, start_time: now, end_time: tomorrow, mentor: user )
+  s = Slot.create(title: "SeedSlot_Active#{i}", capacity: i, start_time: now, end_time: tomorrow, mentor: mentor )
+
+  Appointment.create(student: student, slot: s)
 end
 
 # create slot with 2days ago ~ yesterday
 
 5.times do |i|
-  Slot.create(title: "SeedSlot_Old#{i}", capacity: i, start_time: yesterday - 1.day, end_time: yesterday, mentor: user )
+  s = Slot.create(title: "SeedSlot_Old#{i}", capacity: i, start_time: yesterday - 1.day, end_time: yesterday, mentor: mentor )
+  Appointment.create(student: student, slot: s)
 end
+
+
 
 # Feedback.create(rating: 1, comment: 'AAA', appointment_id: 1, user_id: 1)
 # Feedback.create(rating: 5, comment: 'BBB', appointment_id: 2, user_id: 2	)
