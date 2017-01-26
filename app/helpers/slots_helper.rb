@@ -77,4 +77,11 @@ module SlotsHelper
       min
     end
   end
+
+  def slots_in_this_time(year,month,day,hour,min)
+    t = Time.new(year,month,day,hour,min)
+    p t
+    Slot.all.select{|slot| slot.start_time <= t && slot.end_time  >= t}
+  end
+
 end

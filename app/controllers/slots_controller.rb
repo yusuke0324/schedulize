@@ -9,6 +9,15 @@ class SlotsController < ApplicationController
 
   end
 
+  def new
+    # @hour = params[:hour]
+    # @min = params[:min]
+    # @slot = Slot.new(params[:slot])
+  end
+
+  def create
+  end
+
   def month_index
     params[:month] = params[:month].to_i
     params[:year] = params[:year].to_i
