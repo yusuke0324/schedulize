@@ -13,11 +13,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @user = User.find_by(id: params[:id])
-    p '*' * 10
-    @user = User.find(params[:id])
-    p @user
+    if current_user == nil
+      redirect_to new_user_url
+    else
+      @user = User.find_by(id: params[:id])
+      correct_user(@user)
+    end
   end
+
   def create
     @user = User.new(user_params)
     if @user.save
