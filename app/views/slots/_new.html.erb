@@ -1,0 +1,17 @@
+<form class="" action="index.html" method="post">
+  <label>Title:</label> <br>
+  <input type="text" name="slots[title]"/> <br> <br>
+  <label>Capacity:</label> <br>
+  <select name ="slots[capacity]">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select> <br> <br>
+  <label>Starts:</label> <br>
+  <input type="time" name="slots[start_time]" step="1800" min="09:00" max="17:30" value= "<%=first_start %>" /> <br>
+  <label>Ends:</label> <br>
+  <input type="time" name="slots[end_time]" step="1800" min="04:00" max="18:00" value="<%=first_end%>" /><br> <br>
+  <input type="submit" value="Create" />
+</form>
