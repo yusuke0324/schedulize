@@ -1,33 +1,36 @@
 
-
+<div class="centered-1">
+  <div class="well well-lg">
+    <div class="row">
+      <h3>Creating office hours</h3>
+      <%= form_for @slot  do |f| %>
+        From:
+        <%=datetime_select(:slot, :start_time, start_year: current_year,
+        end_year: current_year + 1,
+        minute_step: 30,
+        start_hour: 9,
+        end_hour: 17,
+        prompt: {day: 'Choose day', month: 'Choose month',
+          year: 'Choose year', hour: 'Choose hour', minute: 'Choose minute'}
+         )%><br /><br />
+        To:
+        <%=datetime_select(:slot, :end_time, start_year: current_year,
+        end_year: current_year + 1,
+        minute_step: 30,
+        start_hour: 9,
+        end_hour: 18,
+        prompt: {day: 'Choose day', month: 'Choose month',
+          year: 'Choose year', hour: 'Choose hour', minute: 'Choose minute'}
+         )%><br /><br />
+        Title:
+        <%= f.text_field :title%>
+        Capacity:
+        <%= f.select :capacity, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9'], ['10','10']] %> <br><br>
+        <%= f.submit "Create", class:"btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<h3>Creating office hours</h3>
-<%= form_for @slot  do |f| %>
-  From:
-  <%=datetime_select(:slot, :start_time, start_year: current_year,
-  end_year: current_year + 1,
-  minute_step: 30,
-  start_hour: 9,
-  end_hour: 17,
-  prompt: {day: 'Choose day', month: 'Choose month',
-    year: 'Choose year', hour: 'Choose hour', minute: 'Choose minute'}
-   )%><br /><br />
-  To:
-  <%=datetime_select(:slot, :end_time, start_year: current_year,
-  end_year: current_year + 1,
-  minute_step: 30,
-  start_hour: 9,
-  end_hour: 18,
-  prompt: {day: 'Choose day', month: 'Choose month',
-    year: 'Choose year', hour: 'Choose hour', minute: 'Choose minute'}
-   )%><br /><br />
-  Title:
-  <%= f.text_field :title%>
-  Capacity:
-  <%= f.select :capacity, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9'], ['10','10']] %> <br><br>
-  <%= f.submit :create %>
-<% end %>
 
 <% if flash[:errors] %>
   <div class="errors">
