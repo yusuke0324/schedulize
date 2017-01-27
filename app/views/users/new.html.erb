@@ -1,4 +1,12 @@
+
 <h1> Welcome to SchedulEyes! </h1>
+<p>
+	<% if @errors %>
+			<% @errors.each do |e| %>
+				<li> <%= e %> </li>
+			<% end %>
+	<% end %>
+</p>
 <div class="centered">
   <%= form_for @user, class:"form-horizontal" do |f| %>
     <fieldset>

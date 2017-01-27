@@ -1,12 +1,15 @@
+[![CircleCI](https://circleci.com/gh/yusuke0324/schedulize.svg?style=svg)](https://circleci.com/gh/yusuke0324/schedulize)
+
+
 # SchedulEyes
 
 Brought to you by Decided, a software development team committed to engineering thoughtful, elegant applications.
 
 ## Decided are
-  Meriç Bal
-  Eric O'Rear
-  Yusuke Takeuchi
-  Joe Viveiros
+  Meriç Bal |
+  Eric O'Rear |
+  Yusuke Takeuchi |
+  Joe Viveiros |
   Matt Weingarten
 
 ## Synopsis
@@ -23,7 +26,7 @@ Brought to you by Decided, a software development team committed to engineering 
   * They can register and login with unique information
   * Students and Mentors have different user experiences
   * Appointments are between half an hour and two hours long
-  * Moderators can create appointment Slots, available to up to 5 students
+  * Mentors can create appointment Slots, available to up to 5 students
   * Mentors and students can both view their Commitments on their profile pages
   * Mentors and students can both provide feedback about the Appointment, with a numerical rating and text description
   

@@ -10,8 +10,25 @@ class SlotsController < ApplicationController
 
   end
 
-  def create
+  def new
+    @slot = Slot.new
+  end
 
+  def create
+    params[:slot].permit!
+
+    @slot = Slot.new
+    @slot.title = params[:slot][:title]
+    @slot.capacity = params[:slot][:capacity]
+    @slot.end_time = create_date_time(params, "end")
+    @slot.start_time = create_date_time(params, "start")
+    @slot.user_id = current_user.id
+
+    if @slot.save
+      redirect_to slot_path(@slot)
+    else
+      redirect_to new_slot_path
+    end
   end
 
   def month_index
@@ -51,6 +68,10 @@ class SlotsController < ApplicationController
     Slot.all.select{|instance| instance.start_time.to_date == date}
   end
 
+  def create_date_time(par, type)
+    info = params[:slot].select{|key,value| key.include?("#{type}_time")}.values.map(&:to_i)
+    DateTime.new(info[0],info[1],info[2],info[3],info[4])
+  end
 
 
 end

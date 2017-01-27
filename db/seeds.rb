@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 require 'date'
 Feedback.destroy_all
 User.destroy_all
@@ -14,6 +7,8 @@ now = Time.now
 tomorrow = now + 1.day
 yesterday = now - 1.day
 user = User.create(first_name: 'Seed', last_name: 'Mentor', phase: 1, mentor: true, email: 'mentor@seed.com', password: 'password', password_confirmation: 'password')
+user = User.create(first_name: 'meric', last_name: 'bal', phase: 1, mentor: false, email: 'meric@bal.com', password: '1234', password_confirmation: '1234')
+
 
 # create slot with now ~ tomorrow
 5.times do |i|
@@ -26,5 +21,13 @@ end
   Slot.create(title: "SeedSlot_Old#{i}", capacity: i, start_time: yesterday - 1.day, end_time: yesterday, mentor: user )
 end
 
-Feedback.create(rating: 1, comment: 'AAA', user_id: 7, slot_id: 7)
-Feedback.create(rating: 5, comment: 'BBB', user_id: 2, slot_id: 6)
+a = ['good', 'very nice', 'good', 'so good', 'so very fucking nice']
+n = [1,2,3,4,5]
+
+5.times do |i|
+	Feedback.create(rating: n.sample, comment: a.sample, slot_id: Slot.sample.id, user_id: i)
+end
+
+
+Appointment.create(user_id: 1, slot_id: 1)
+Appointment.create(user_id: 2, slot_id: 2)
