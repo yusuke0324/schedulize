@@ -1,7 +1,7 @@
 <%= form_for @slot, class:"form-horizontal"  do |f| %>
   <div class="form-group">
   <label class="col-lg-2 control-label">From:</label>
-    <div class="col-lg-10">  
+    <div class="col-lg-10">
     <%=datetime_select,(:slot, :start_time,
     start_year: current_year,
     end_year: current_year + 1,
