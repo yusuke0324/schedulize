@@ -64,7 +64,9 @@ class SlotsController < ApplicationController
     @day = params[:day]
     @date = Date.new(@year,@month,@day)
     @slots = slots_in_day(@date)
-
+    @colors = ['olive','teal','yellow','orange','red','purple',
+      'peachpuff','aqua','firebrick','pink', 'wheat','goldenrod','darkseagreen',
+      'ivory', 'lavenderblush','lavender']
   end
 
 
