@@ -6,31 +6,59 @@
     Start Time: <%= @slot.start_time.month.to_s + "/" + @slot.start_time.day.to_s + " " + display_time(@slot.start_time) %><br>
     End Time: <%= @slot.end_time.month.to_s + "/" + @slot.end_time.day.to_s + " " + display_time(@slot.end_time) %><br>
     This Slot's Mentor: <%= @mentor.first_name %><br>
-    <%=@mentor.first_name%>'s Phase: <%=@mentor.phase%>
+    <%=@mentor.first_name%>'s Phase: <%=@mentor.phase%><br>
+    capacity: <%= amount_of_students(@slot)%>/<%= @slot.capacity %>
   </div>
+  <br><br>
 
-  <% if current_user != nil && @mentor = current_user %>
+  <% if current_user && current_user != @mentor && !full?(@slot) && !already_joined?(@slot) %>
+    <div class="appointment-link">
+      <%= link_to "Join!", "/slots/#{@slot.id}/appointments", method: :post %>
+    </div>
+  <% end %>
+  <% if @mentor == current_user %>
+  <div id="student-list">
+      <h5>Students attending:</h5>
+      <% if @students.empty?%>
+          none
+        <% else %>
+         <% @students.each do |student|  %>
+          <%= student.first_name %> <%= student.last_name %>
+          <% end %>
+        <% end %>
+
+  </div>
+    <br><br><br>
     <%= link_to 'Delete this Slot', slot_path(@slot),
               method: :delete,
               data: { confirm: 'Are you sure?' } %>
-  <% elsif current_user != nil && current_user.mentor? == false %>
-    <%= link_to "Make an Appointment", new_appointment_path(@appointment) %>
+<% end %>
+
+
+  <% if already_joined?(@slot) %>
+    <p>You have joined, please show up!</p>
+    <%= link_to "Remove Appointment", "/appointments/#{your_appointment(@slot).id}", method: :delete %>
   <% end %>
 </section>
 
 
 
+<% if over?(@slot) %>
 <h2>Feedback</h2>
 <section class="feedback-container">
   <div class="feedback-list-section">
     <ul class="feedback-list">
-      <% @slot.feedbacks.each do |feedback| %>
-        <li id="feedback-<%= feedback.id %>">
-          <%= link_to feedback.comment, feedback_path(feedback) %>       
-        </li>
+      <%  if @slot.feedbacks %>
+        <% @slot.feedbacks.each do |feedback| %>
+          <li id="feedback-<%= feedback.id %>">
+            <%= link_to feedback.comment, feedback_path(feedback) %>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   <div>
+
+
 
   <h3>Leave Some Feedback</h3>
   <div class="new-feedback">
@@ -39,13 +67,13 @@
       <%= radio_button_tag(:rating, "1") %>
       <%= label_tag(:feedback_rating, "1") %>
       <%= radio_button_tag(:rating, "2") %>
-      <%= label_tag(:feedback_rating, "2") %>    
+      <%= label_tag(:feedback_rating, "2") %>
       <%= radio_button_tag(:rating, "3") %>
       <%= label_tag(:feedback_rating, "3") %>
       <%= radio_button_tag(:rating, "4") %>
       <%= label_tag(:feedback_rating, "4") %>
       <%= radio_button_tag(:rating, "5") %>
-      <%= label_tag(:feedback_rating, "5") %>    
+      <%= label_tag(:feedback_rating, "5") %>
     </p>
     <p>
       <%= f.label :comment %>
@@ -55,4 +83,4 @@
     <% end %>
   </div>
 </section>
-
+<% end %>

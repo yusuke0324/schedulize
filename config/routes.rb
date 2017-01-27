@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   get "/calender/:year/:month/:day", to: "slots#day_index"
 
   resources :slots
+  get "slots/new/:year/:month/:day/:hour/:minute", to: "slots#new"
 
-  resources :appointments
+
+  post "/slots/:id/appointments", to: "appointments#create"
+  delete "/appointments/:id", to: "appointments#delete"
   resources :feedbacks
 end

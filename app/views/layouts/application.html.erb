@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+  <link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css" />
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
@@ -22,19 +21,22 @@
   <body id="main-body">
 
 
-  <div id="menubar">
-    <ul>
-      <% if current_user%>
-        <li class="links"><%=link_to current_user.first_name, user_path(current_user)%></li>
-        <li class="links"><%=link_to "Logout", session_path(current_user), method: :delete%></li>
-        <li class="links"><%=link_to "Month", "/calender/#{current_year}/#{current_month}"%></li>
-        <li class="links"><%=link_to "Day", "/calender/#{current_year}/#{current_month}/#{current_day}"%></li>
-      <%else%>
-        <li class="links" > <%= link_to 'Login', '/sessions/new' %> </li>
-        <li class="links" > <%= link_to 'Register', '/users/new' %> </li>
-      <%end%>
-    </ul>
-  </div>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <span class="navbar-brand">SchedulEyes</span>
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user%>
+          <li class="links"><%=link_to current_user.first_name, user_path(current_user)%></li>
+          <li class="links"><%=link_to "Logout", session_path(current_user), method: :delete%></li>
+          <li class="links"><%=link_to "This Month", "/calender/#{current_year}/#{current_month}"%></li>
+          <li class="links"><%=link_to "Today", "/calender/#{current_year}/#{current_month}/#{current_day}"%></li>
+        <%else%>
+          <li class="links" > <%= link_to 'Login', '/sessions/new' %> </li>
+          <li class="links" > <%= link_to 'Register', '/users/new' %> </li>
+        <%end%>
+      </ul>
+    </div>
+  </nav>
 
 
 

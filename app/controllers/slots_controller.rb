@@ -4,6 +4,7 @@ class SlotsController < ApplicationController
   def show
     @slot = Slot.find(params[:id])
     @mentor = @slot.mentor
+    @students = @slot.students
   end
 
   def destroy
@@ -12,6 +13,16 @@ class SlotsController < ApplicationController
 
   def new
     @slot = Slot.new
+    @hour = params[:hour]
+    @minute = params[:minute]
+    @day = params[:day]
+    @month = params[:month]
+    @year = params[:year]
+    respond_to do |format|
+      format.js {}
+      format.html
+      format.json { render json: @resource }
+    end
   end
 
   def create
@@ -27,6 +38,7 @@ class SlotsController < ApplicationController
     if @slot.save
       redirect_to slot_path(@slot)
     else
+      flash[:errors] = @slot.errors
       redirect_to new_slot_path
     end
   end
@@ -52,7 +64,6 @@ class SlotsController < ApplicationController
     @slots = slots_in_day(@date)
 
   end
-
 
 
 
