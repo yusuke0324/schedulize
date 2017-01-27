@@ -21,6 +21,6 @@ private
 
   def start_must_be_after_now
     errors.add(:start_time, "start_time can't be in the past") unless
-        start_time > DateTime.now
+        start_time > DateTime.UtcNow
   end
 end
