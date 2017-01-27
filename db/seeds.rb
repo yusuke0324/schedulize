@@ -26,5 +26,5 @@ end
   Slot.create(title: "SeedSlot_Old#{i}", capacity: i, start_time: yesterday - 1.day, end_time: yesterday, mentor: user )
 end
 
-# Feedback.create(rating: 1, comment: 'AAA', appointment_id: 1, user_id: 1)
-# Feedback.create(rating: 5, comment: 'BBB', appointment_id: 2, user_id: 2	)
+Feedback.create(rating: 1, comment: 'AAA', user_id: 7, slot_id: 7)
+Feedback.create(rating: 5, comment: 'BBB', user_id: 2, slot_id: 6)
