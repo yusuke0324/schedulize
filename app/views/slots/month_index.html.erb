@@ -1,42 +1,42 @@
 
 <h2> <%= month_string(@month) %> </h2>
-<div class="left-right">
-<% if @month == 12 %>
-  <%= button_to ">",
-    "/calender/#{@year + 1}/#{1}",
-    {method: :get, class: 'btn btn-small', form_class: 'next'}
-    %>
-   <%= button_to "<",
-    "/calender/#{@year}/#{@month-1}",
-    {method: :get, class: 'btn btn-small', form_class: 'prev'}
-     %>
-<% elsif @month == 1  %>
-  <%= button_to ">",
-    "/calender/#{@year}/#{@month+1}",
-    {method: :get, class: 'btn btn-small', form_class: 'next'}
-  %>
-   <%= button_to "<",
-    "/calender/#{@year-1}/12" ,
-    {method: :get, class: 'btn btn-small', form_class: 'prev'}
-    %>
-<% else %>
-   <%= button_to ">",
-    "/calender/#{@year}/#{@month+1}",
-    {method: :get, class: 'btn btn-small', form_class: 'next'}
-    %>
-   <%= button_to "<",
-    "/calender/#{@year}/#{@month-1}",
-    { method: :get, class: 'btn btn-small', form_class: 'prev'}
-    %>
-<% end %>
-</div>
 
 <div class="month-calender">
 
-<% (1..@num_of_days).each do |day| %>
-
-  <span class="day-button" id ="<%=day%>"><%= button_to "#{day}" ,
-  "/calender/#{@year}/#{@month}/#{day}",
-   method: :get  %></span>
+<% if @month == 12 %>
+  <%= button_to "next month","/calender/#{@year + 1}/#{1}",
+   method: :get, class:"btn btn-primary"  %>
+   <%= button_to "previous months","/calender/#{@year}/#{@month-1}",
+    method: :get, class:"btn btn-primary"  %>
+<% elsif @month == 1  %>
+  <%= button_to "next month","/calender/#{@year}/#{@month+1}",
+   method: :get, class:"btn-primary btn"  %>
+   <%= button_to "previous months","/calender/#{@year-1}/12",
+    method: :get, class:"btn-primary btn"  %>
+<% else %>
+  <%= button_to "next month","/calender/#{@year}/#{@month+1}",
+   method: :get, class:"btn-primary btn"  %>
+   <%= button_to "previous months","/calender/#{@year}/#{@month-1}",
+    method: :get, class:"btn btn-primary"  %>
 <% end %>
+
+<p><table id="calendar-table" width="1100">
+  <tr align="center" >
+  <td>1</td>
+  <td>2</td>
+  <td>3</td>
+  <td>4</td>
+  <td>5</td>
+  <td>6</td>
+  <td>7</td>
+  </tr>
+  <% (1..@num_of_days).each_slice(7) do |week| %>
+  <tr> <% week.each do |day| %>
+  <td> <%= button_to "#{day} Ofiice hours: #{amount_of_slots_in_day(Date.new(@year,@month,day))} ", "/calender/#{@year}/#{@month}/#{day}", { :class => 'btn btn-primary day-button', :id => "#{day}", :method => 'get' } %> </td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+
+
 </div>
