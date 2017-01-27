@@ -7,18 +7,22 @@
 <%= button_to 'New Slot', new_slot_path, method: :get, class: 'btn btn-default center-block' %>
 <% end %>
 <div class="commitments">
-  <h3>Your commitments are ... </h3>
+  <h4>Your commitments are ... </h4>
 </div>
   <% if @user.mentor?  %>
   <div class="commitments">
-    <h4>Office hours you are hosting:</h4>
+    <h3>Office Hours You Are Hosting</h3>
   </div>
       <%= render partial: "commitments_list", locals: {slots: @slots, type: "hosting"} %>
   <% end %>
   <% if !@appointment_slots.empty? %>
   <div class="commitments">  
-    <h4>Office hours you are attending:</h4>
+    <h3>Office Hours You Are Attending</h3>
   </div>
       <%= render partial: "commitments_list", locals: {slots: @appointment_slots, type: "appointment"} %>
   <% end %>
+  <div class="feedbacks">  
+    <h3>Your Posted Reviews</h3>
+  </div>
+      <%= render partial: "feedbacks/user_index", locals: {user: @user} %>
 </ul>

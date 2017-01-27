@@ -1,0 +1,26 @@
+<% @user.feedbacks.each do |feedback| %>
+
+  <br>
+
+
+  <div class="panel panel-primary center-block">
+    <div class="panel-heading">
+      <h3 class="panel-title" ><%= link_to "#{feedback.comment}", feedback_path(feedback) %></h3>
+    </div>
+
+      <div class="panel-body">
+        <section class="feedback-container">
+          <div class="feedback-list-section">
+            <ul class="feedback-list">
+              <li id="feedback-<%= feedback.id %>">
+                <%= link_to feedback.comment, feedback_path(feedback) %>
+              </li>
+            </ul>
+          </div>
+      </div>
+  </div>
+  <br>
+  <br>
+  <br>
+<% end %>
+
