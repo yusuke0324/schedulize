@@ -1,8 +1,46 @@
 
 <h3><%=  month_string(@month)+ " #{@day}"  %></h3>
+<div class="left-right">
 
-<ul>
-  <% slot_times.each do |slot|  %>
+
+<% if @day == length_of_month(@month,@year) %>
+  <% if @month == 12 %>
+    <%= button_to ">", "/calender/#{@year + 1}/#{1}/#{1}",
+    { method: :get, class: 'btn btn-small', form_class: 'next'} %>
+    <%= button_to "<", "/calender/#{@year}/#{@month}/#{@day - 1}",
+    {method: :get, class: 'btn btn-small', form_class: 'prev'} %>
+  <% else %>
+    <%= button_to ">", "/calender/#{@year}/#{@month + 1}/#{1}",
+    { method: :get, class: 'btn btn-small', form_class: 'next'} %>
+    <%= button_to "<", "/calender/#{@year}/#{@month}/#{@day - 1}",
+    {method: :get, class: 'btn btn-small', form_class: 'prev'} %>
+  <% end %>
+
+<% elsif @day == 1 %>
+  <% if @month == 1 %>
+  <%= button_to ">", "/calender/#{@year}/#{@month}/#{@day + 1}",
+  {method: :get, class: 'btn btn-small', form_class: 'next'} %>
+  <%= button_to "<", "/calender/#{@year-1}/#{12}/#{31}",
+  { method: :get, class: 'btn btn-small', form_class: 'prev'} %>
+  <% else %>
+    <%= button_to ">", "/calender/#{@year}/#{@month}/#{@day + 1}",
+    { method: :get, class: 'btn btn-small', form_class: 'next'} %>
+    <%= button_to "<", "/calender/#{@year}/#{@month-1}/#{length_of_month(@month-1,@year)}",
+    { method: :get, class: 'btn btn-small', form_class: 'prev'} %>
+  <% end %>
+
+<% else %>
+  <%= button_to ">", "/calender/#{@year}/#{@month}/#{@day + 1}",
+  {method: :get, class: 'btn btn-small', form_class: 'next'} %>
+  <%= button_to "<", "/calender/#{@year}/#{@month}/#{@day - 1}",
+  {method: :get, class: 'btn btn-small', form_class: 'prev'} %>
+<% end %>
+</div>
+
+<%= button_to "Month overview", "/calender/#{@year}/#{@month}", {method: :get, class: 'btn', form_class: 'overview'} %>
+
+<ul class="day-list">
+  <% slot_times(@year,@month,@day).each do |slot|  %>
     <li>
       <% if current_user.mentor? %>
         <%=link_to "#{slot.hour}:#{string_increase_for_min(slot.min)}", "/slots/new/#{@year}/#{@month}/#{@day}/#{slot.hour}/#{slot.min}", remote: true%>
@@ -11,7 +49,7 @@
       <% end %>
         <br />
     </li>
-      <ul>
+      <ul class="current-slot-list">
         <%sort_by_start(slots_in_this_time(@year,@month,@day,slot.hour,slot.min)).each do |office_hours|%>
           <li>
             <%=link_to "#{office_hours.title}" , slot_path(office_hours) %>
@@ -21,30 +59,36 @@
   <% end %>
 </ul>
 
-<%= button_to "Month overview", "/calender/#{@year}/#{@month}", method: :get %>
 
-<% if @day == length_of_month(@month,@year) %>
-  <% if @month == 12 %>
-    <%= button_to "Next Day", "/calender/#{@year + 1}/#{1}/#{1}", method: :get %>
-    <%= button_to "Prev Day", "/calender/#{@year}/#{@month}/#{@day - 1}", method: :get %>
-  <% else %>
-    <%= button_to "Next Day", "/calender/#{@year}/#{@month + 1}/#{1}", method: :get %>
-    <%= button_to "Prev Day", "/calender/#{@year}/#{@month}/#{@day - 1}", method: :get %>
+<table class = "calender">
+  <% slot_times(@year,@month,@day).each do |slot|  %>
+    <th class="<%= slot.hour%>:<%=string_increase_for_min(slot.min)%>">
+      <% if current_user.mentor? %>
+        <%=link_to "#{slot.hour}:#{string_increase_for_min(slot.min)}", "/slots/new/#{@year}/#{@month}/#{@day}/#{slot.hour}/#{slot.min}", remote: true%>
+      <% else %>
+        <%= slot.hour%>:<%=string_increase_for_min(slot.min)%>
+      <% end %>
+    </th>
   <% end %>
 
-<% elsif @day == 1 %>
-  <% if @month == 1 %>
-  <%= button_to "Next Day", "/calender/#{@year}/#{@month}/#{@day + 1}", method: :get %>
-  <%= button_to "Prev Day", "/calender/#{@year-1}/#{12}/#{31}", method: :get %>
-  <% else %>
-    <%= button_to "Next Day", "/calender/#{@year}/#{@month}/#{@day + 1}", method: :get %>
-    <%= button_to "Prev Day", "/calender/#{@year}/#{@month-1}/#{length_of_month(@month-1,@year)}", method: :get %>
-  <% end %>
+  <% @slots.each do |slot| %>
+    <tr>
 
-<% else %>
-  <%= button_to "Next Day", "/calender/#{@year}/#{@month}/#{@day + 1}", method: :get %>
-  <%= button_to "Prev Day", "/calender/#{@year}/#{@month}/#{@day - 1}", method: :get %>
-<% end %>
+        <%slot_times(@year,@month,@day).each do |time| %>
+         <td>
+           <%=  %>
+
+          <% if slot.start_time.to_time <= time.to_time && slot.end_time.to_time >= time.to_time  %>
+            <%= slot.title %>
+          <% end %>
+         </td>
+        <% end %>
+
+    </tr>
+  <% end %>
+</table>
+
+
 <br />
 <br />
 <div id="new-slot-form">
