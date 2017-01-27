@@ -1,19 +1,39 @@
+
+
+<div class="jumbotron">
+
+
 <h1><%= @slot.title %> for <%= month_string(@slot.start_time.month) + " " + @slot.start_time.day.to_s %> </h1>
+<div class="slot-info-div">
+
 
 <section class="slot-info">
-  <div>
+  <ul class="list-group">
+    <li  class="list-group-item">
     Topic: <%= @slot.title %><br>
-    Start Time: <%= @slot.start_time.month.to_s + "/" + @slot.start_time.day.to_s + " " + display_time(@slot.start_time) %><br>
-    End Time: <%= @slot.end_time.month.to_s + "/" + @slot.end_time.day.to_s + " " + display_time(@slot.end_time) %><br>
-    This Slot's Mentor: <%= @mentor.first_name %><br>
-    <%=@mentor.first_name%>'s Phase: <%=@mentor.phase%><br>
+    </li>
+    <li class="list-group-item">
+    Start Time: <%= @slot.start_time.month.to_s + "/" + @slot.start_time.day.to_s + " " + display_time(@slot.start_time) %>
+    </li>
+    <li class="list-group-item">
+    End Time: <%= @slot.end_time.month.to_s + "/" + @slot.end_time.day.to_s + " " + display_time(@slot.end_time) %>
+    </li>
+    <li class="list-group-item">
+    This Slot's Mentor: <%= @mentor.first_name %>
+    </li>
+    <li class="list-group-item">
+    <%=@mentor.first_name%>'s Phase: <%=@mentor.phase%>
+    </li>
+    <li class="list-group-item">
     capacity: <%= amount_of_students(@slot)%>/<%= @slot.capacity %>
-  </div>
+    </li>
+  </ul>
   <br><br>
+  </div>
 
   <% if current_user && current_user != @mentor && !full?(@slot) && !already_joined?(@slot) && !over?(@slot) %>
     <div class="appointment-link">
-      <%= link_to "Join!", "/slots/#{@slot.id}/appointments", method: :post %>
+      <%= link_to "Join!", "/slots/#{@slot.id}/appointments", method: :post, class: "btn btn-primary" %>
     </div>
   <% end %>
   <% if @mentor == current_user %>
@@ -31,13 +51,13 @@
     <br><br><br>
     <%= link_to 'Delete this Slot', slot_path(@slot),
               method: :delete,
-              data: { confirm: 'Are you sure?' } %>
+              data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
 <% end %>
 
 
   <% if already_joined?(@slot) %>
     <p>You have joined, please show up!</p>
-    <%= link_to "Remove Appointment", "/appointments/#{your_appointment(@slot).id}", method: :delete %>
+    <%= link_to "Remove Appointment", "/appointments/#{your_appointment(@slot).id}", method: :delete, class: "btn btn-primary" %>
   <% end %>
 </section>
 
@@ -51,7 +71,7 @@
       <%  if @slot.feedbacks %>
         <% @slot.feedbacks.each do |feedback| %>
           <li id="feedback-<%= feedback.id %>">
-            <%= link_to feedback.comment, feedback_path(feedback) %>
+            <%= link_to feedback.comment, feedback_path(feedback), class: "btn btn-primary" %>
           </li>
         <% end %>
       <% end %>
@@ -64,3 +84,4 @@
   </div>
 </section>
 <% end %>
+</div>

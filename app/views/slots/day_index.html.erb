@@ -1,5 +1,10 @@
+<div class="jumbotron">
 
-<h3><%=  month_string(@month)+ " #{@day}"  %></h3>
+
+<h2><%=  month_string(@month)+ " #{@day}"  %></h2>
+
+  <%= button_to "Month overview", "/calender/#{@year}/#{@month}", {method: :get, class: 'btn', form_class: 'overview'} %>
+</div>
 <div class="left-right">
 
 
@@ -37,7 +42,7 @@
 <% end %>
 </div>
 
-<%= button_to "Month overview", "/calender/#{@year}/#{@month}", {method: :get, class: 'btn', form_class: 'overview'} %>
+
 
 <div class="calender">
 

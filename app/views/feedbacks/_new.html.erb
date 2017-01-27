@@ -21,13 +21,13 @@
     <%= radio_button_tag("feedback[rating]", "1") %>
     <%= label_tag(:feedback_rating, "1") %>
     <%= radio_button_tag("feedback[rating]", "2") %>
-    <%= label_tag(:feedback_rating, "2") %>    
+    <%= label_tag(:feedback_rating, "2") %>
     <%= radio_button_tag("feedback[rating]", "3") %>
     <%= label_tag(:feedback_rating, "3") %>
     <%= radio_button_tag("feedback[rating]", "4") %>
     <%= label_tag(:feedback_rating, "4") %>
     <%= radio_button_tag("feedback[rating]", "5") %>
-    <%= label_tag(:feedback_rating, "5") %>    
+    <%= label_tag(:feedback_rating, "5") %>
   </p>
   <p id="comment-prompt">
     Use this space to explain your rating in any further detail.
@@ -36,6 +36,6 @@
     <%= text_area_tag "feedback[comment]" %>
   </p>
   <p>
-    <%= submit_tag 'Thank you for your ASKful feedback'%>
+    <%= submit_tag 'Thank you for your ASKful feedback', class: "btn btn-primary"%>
   </p>
 <% end %>
