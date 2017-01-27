@@ -27,6 +27,8 @@
       <% if current_user%>
         <li class="links"><%=link_to current_user.first_name, user_path(current_user)%></li>
         <li class="links"><%=link_to "Logout", session_path(current_user), method: :delete%></li>
+        <li class="links"><%=link_to "Month", "/calender/#{current_year}/#{current_month}"%></li>
+        <li class="links"><%=link_to "Day", "/calender/#{current_year}/#{current_month}/#{current_day}"%></li>
       <%else%>
         <li class="links" > <%= link_to 'Login', '/sessions/new' %> </li>
         <li class="links" > <%= link_to 'Register', '/users/new' %> </li>
