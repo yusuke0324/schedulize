@@ -9,24 +9,26 @@
   <br>
 
   <!-- title -->
-  <p><strong>
-    <%= link_to "#{slot.title}", slot_path(slot) %>
-  </strong></p>
-
+  <div class="panel panel-primary center-block">
+      <div class="panel-heading">
+        <h3 class="panel-title" ><%= link_to "#{slot.title}", slot_path(slot) %></h3>
+      </div>
   <!-- time -->
-  <p><%= display_date_time(slot.start_time) %> ~ <%= display_date_time(slot.end_time) %></p>
+      <div class="panel-body">
+        <p><%= display_date_time(slot.start_time) %> ~ <%= display_date_time(slot.end_time) %></p>
+      <% if type == 'appointment' %>
+        <!-- menter -->
+        <p>Organized by: <%= slot.mentor.first_name %> <%= slot.mentor.last_name %></p>
 
-  <% if type == 'appointment' %>
-    <!-- menter -->
-    <p>Organized by: <%= slot.mentor.first_name %> <%= slot.mentor.last_name %></p>
+        <% else %>
+        <!-- capacity -->
+        <p>Capacity:<%= slot.capacity %></p>
 
-    <% else %>
-    <!-- capacity -->
-    <p>Capacity:<%= slot.capacity %></p>
-
-    <!-- delete link -->
-    <%= link_to 'Delete', slot_path(slot), method: :delete %>
-  <% end %>
+        <!-- delete link -->
+        <%= link_to 'Delete', slot_path(slot), method: :delete %>
+      <% end %>
+    </div>
+  </div>
   <br>
   <br>
   <br>
