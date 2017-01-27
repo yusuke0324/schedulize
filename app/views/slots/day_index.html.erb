@@ -4,7 +4,7 @@
 <ul>
   <% slot_times.each do |slot|  %>
     <li>
-      <%=link_to "#{slot.hour}:#{string_increase_for_min(slot.min)}", new_slot_path({slot: {start_time: 'hoge'}})%> <br>
+      <%=link_to "#{slot.hour}:#{string_increase_for_min(slot.min)}", "/slots/new/#{@year}/#{@month}/#{@day}/#{slot.hour}/#{slot.min}", remote: true%>  <br>
     </li>
       <ul>
         <%sort_by_start(slots_in_this_time(@year,@month,@day,slot.hour,slot.min)).each do |office_hours|%>
@@ -17,3 +17,7 @@
 </ul>
 
 <%= button_to "Month overview", "/calender/#{@year}/#{@month}", method: :get %>
+
+
+<div id="new-slot-form">
+</div>

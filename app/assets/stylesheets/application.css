@@ -13,12 +13,12 @@
  *= require_tree .
  *= require_self
  */
-#menubar {
+/*#menubar {
     position: fixed;
     top: 0px;
     right: 0px;
     width: 100%;
-    background-color: gray;
+    background-color: gray;*/
     /*padding: 4px;*/
     /*border-bottom: 1px solid black;*/
 }
@@ -62,8 +62,8 @@ li.links {
 }*/*/
 
 }
-
+/*
 .centered {
   width: 500px;
   margin: 0 auto;
-}
+}*/
