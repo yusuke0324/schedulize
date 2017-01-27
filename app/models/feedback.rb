@@ -1,6 +1,6 @@
 class Feedback < ApplicationRecord
 	belongs_to :user
-	has_one :slot, through: :appointments
+	belongs_to :slot
 
 
 	validates :rating, :slot, :user, presence: true

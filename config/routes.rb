@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get "/calender/:year/:month", to: "slots#month_index"
   get "/calender/:year/:month/:day", to: "slots#day_index"
 
-  resources :slots
+  resources :slots do
+    resources :feedbacks
+  end
 
   resources :appointments
   resources :feedbacks

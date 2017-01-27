@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-#menubar {
+/*#menubar {
     position: fixed;
     top: 0px;
     right: 0px;
@@ -21,7 +21,7 @@
     background-color: gray;
     /*padding: 4px;*/
     /*border-bottom: 1px solid black;*/
-}
+}*/
 
 
 /*#main-body {

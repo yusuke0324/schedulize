@@ -8,13 +8,16 @@ class FeedbacksController < ApplicationController
 	def create
 		@feedback = Feedback.new(feedback_params)
 		@feedback.user_id = current_user.id
-
-		if @feedback.valid?
-			@feedback.save
-			redirect_to '/feedbacks'
-			else 
+		respond_to do |format|
+			if @feedback.save
+				format.js{}
+				format.html{}
+				redirect_to feedback_path(@feedback)
+			else
 				@errors = @feedback.errors.full_messages
-				render :new
+				format.js{}
+				format.html{render :new}
+			end
 		end
 	end
 
