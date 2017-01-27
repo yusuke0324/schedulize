@@ -23,6 +23,27 @@
 
 <%= button_to "Month overview", "/calender/#{@year}/#{@month}", method: :get %>
 
+<% if @day == length_of_month(@month,@year) %>
+  <% if @month == 12 %>
+    <%= button_to "Next Day", "/calender/#{@year + 1}/#{1}/#{1}", method: :get %>
+    <%= button_to "Prev Day", "/calender/#{@year}/#{@month}/#{@day - 1}", method: :get %>
+  <% else %>
+    <%= button_to "Next Day", "/calender/#{@year}/#{@month + 1}/#{1}", method: :get %>
+    <%= button_to "Prev Day", "/calender/#{@year}/#{@month}/#{@day - 1}", method: :get %>
+  <% end %>
 
+<% elsif @day == 1 %>
+  <% if @month == 1 %>
+  <%= button_to "Next Day", "/calender/#{@year}/#{@month}/#{@day + 1}", method: :get %>
+  <%= button_to "Prev Day", "/calender/#{@year-1}/#{12}/#{31}", method: :get %>
+  <% else %>
+    <%= button_to "Next Day", "/calender/#{@year}/#{@month}/#{@day + 1}", method: :get %>
+    <%= button_to "Prev Day", "/calender/#{@year}/#{@month-1}/#{length_of_month(@month-1,@year)}", method: :get %>
+  <% end %>
+
+<% else %>
+  <%= button_to "Next Day", "/calender/#{@year}/#{@month}/#{@day + 1}", method: :get %>
+  <%= button_to "Prev Day", "/calender/#{@year}/#{@month}/#{@day - 1}", method: :get %>
+<% end %>
 <div id="new-slot-form">
 </div>

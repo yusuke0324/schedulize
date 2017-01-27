@@ -4,6 +4,7 @@ class SlotsController < ApplicationController
   def show
     @slot = Slot.find(params[:id])
     @mentor = @slot.mentor
+    @students = @slot.students
   end
 
   def destroy
@@ -62,7 +63,6 @@ class SlotsController < ApplicationController
     @slots = slots_in_day(@date)
 
   end
-
 
 
 

@@ -94,4 +94,37 @@ module SlotsHelper
   def over?(slot)
     DateTime.now >= slot.end_time
   end
+
+  def length_of_month(month,year)
+    case month
+    when 1
+      31
+    when 2
+      if year % 4 == 0
+        29
+      else
+        28
+      end
+    when 3
+      31
+    when 4
+      30
+    when 5
+      31
+    when 6
+      30
+    when 7
+      31
+    when 8
+      31
+    when 9
+      30
+    when 10
+      31
+    when 11
+      30
+    when 12
+      31
+    end
+  end
 end
