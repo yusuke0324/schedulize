@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "slots/new/:year/:month/:day/:hour/:minute", to: "slots#new"
 
 
-  resources :appointments
+  post "/slots/:id/appointments", to: "appointments#create"
+  delete "/appointments/:id", to: "appointments#delete"
   resources :feedbacks
 end
