@@ -21,16 +21,13 @@ end
   Slot.create(title: "SeedSlot_Old#{i}", capacity: i, start_time: yesterday - 1.day, end_time: yesterday, mentor: user )
 end
 
-
-
 a = ['good', 'very nice', 'good', 'so good', 'so very fucking nice']
 n = [1,2,3,4,5]
-# 5.times do |i|
-	# Feedback.create(rating: n.sample, comment: a.sample, appointment_id: i, user_id: i)
-# end
 
-Feedback.create(rating: n.sample, comment: a.sample, appointment_id: 1, user_id: 1)
-Feedback.create(rating: n.sample, comment: a.sample, appointment_id: 2, user_id: 2)
+5.times do |i|
+	Feedback.create(rating: n.sample, comment: a.sample, slot_id: Slot.sample.id, user_id: i)
+end
+
 
 Appointment.create(user_id: 1, slot_id: 1)
 Appointment.create(user_id: 2, slot_id: 2)

@@ -4,7 +4,7 @@
   <div>
     Topic: <%= @slot.title %><br>
     Start Time: <%= @slot.start_time.month.to_s + "/" + @slot.start_time.day.to_s + " " + display_time(@slot.start_time) %><br>
-    End Time: <%= @slot.end_time.to_time %><br>
+    End Time: <%= @slot.end_time.month.to_s + "/" + @slot.end_time.day.to_s + " " + display_time(@slot.end_time) %><br>
     This Slot's Mentor: <%= @mentor.first_name %><br>
     <%=@mentor.first_name%>'s Phase: <%=@mentor.phase%>
   </div>
@@ -18,37 +18,41 @@
   <% end %>
 </section>
 
-<h2>Leave Some Feedback</h2>
 
-<section class="new-feedback">
-  <%= form_for feedbacks_path do |f| %>
-  <p>
-    <%= radio_button_tag(:rating, "1") %>
-    <%= label_tag(:feedback_rating, "1") %>
-    <%= radio_button_tag(:rating, "2") %>
-    <%= label_tag(:feedback_rating, "2") %>    
-    <%= radio_button_tag(:rating, "3") %>
-    <%= label_tag(:feedback_rating, "3") %>
-    <%= radio_button_tag(:rating, "4") %>
-    <%= label_tag(:feedback_rating, "4") %>
-    <%= radio_button_tag(:rating, "5") %>
-    <%= label_tag(:feedback_rating, "5") %>    
-  </p>
-  <p>
-    <%= f.label :comment %>
-    <%= f.text_area :comment %>
-  </p>
-  <%= f.submit 'Thank you for your ASKful feedback'%>
-  <% end %>
 
-  </section>
-
-  <section class="feedback-list">
-    <ul>
-    <%= @slot %>
-      <% @slot.feedbacks do |feedback| %>
-        <li id="feedback-<%= feedback.id %>"><%= feedback %></li>
+<h2>Feedback</h2>
+<section class="feedback-container">
+  <div class="feedback-list-section">
+    <ul class="feedback-list">
+      <% @slot.feedbacks.each do |feedback| %>
+        <li id="feedback-<%= feedback.id %>">
+          <%= link_to feedback.comment, feedback_path(feedback) %>       
+        </li>
       <% end %>
     </ul>
-  </section>
+  <div>
+
+  <h3>Leave Some Feedback</h3>
+  <div class="new-feedback">
+    <%= form_for feedbacks_path do |f| %>
+    <p>
+      <%= radio_button_tag(:rating, "1") %>
+      <%= label_tag(:feedback_rating, "1") %>
+      <%= radio_button_tag(:rating, "2") %>
+      <%= label_tag(:feedback_rating, "2") %>    
+      <%= radio_button_tag(:rating, "3") %>
+      <%= label_tag(:feedback_rating, "3") %>
+      <%= radio_button_tag(:rating, "4") %>
+      <%= label_tag(:feedback_rating, "4") %>
+      <%= radio_button_tag(:rating, "5") %>
+      <%= label_tag(:feedback_rating, "5") %>    
+    </p>
+    <p>
+      <%= f.label :comment %>
+      <%= f.text_area :comment %>
+    </p>
+    <%= f.submit 'Thank you for your ASKful feedback'%>
+    <% end %>
+  </div>
+</section>
 
