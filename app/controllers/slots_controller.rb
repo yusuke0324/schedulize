@@ -38,6 +38,7 @@ class SlotsController < ApplicationController
     if @slot.save
       redirect_to slot_path(@slot)
     else
+      flash[:errors] = @slot.errors
       redirect_to new_slot_path
     end
   end
