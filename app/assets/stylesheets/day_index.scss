@@ -23,14 +23,21 @@
   width: 80%;
 }
 
+
+
+.left-right {
+  display: block;
+  float: left;
+  text-align: center;
+}
 // .prev {
-//   position: absolute;
+//   position: fixed;
 //   float: left;
-//   margin-right: 0px;
+//
 // }
 //
 // .next {
-//   position: absolute;
+//   position: fixed;
 //   float: right;
-//   margin-left: 0px;
+//
 // }
