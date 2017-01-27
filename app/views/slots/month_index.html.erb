@@ -1,6 +1,8 @@
 
 <h2> <%= month_string(@month) %> </h2>
 
+<div class="month-calender">
+
 <% if @month == 12 %>
   <%= button_to "next month","/calender/#{@year + 1}/#{1}",
    method: :get, class:"btn btn-primary"  %>
@@ -34,4 +36,7 @@
     <% end %>
   </tr>
   <% end %>
-</table></p>
+</table>
+
+
+</div>

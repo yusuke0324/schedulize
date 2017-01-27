@@ -11,14 +11,18 @@
 </div>
   <% if @user.mentor?  %>
   <div class="commitments">
-    <h4>Office hours you are hosting:</h4>
+    <h4>Office Hours You Are Hosting</h4>
   </div>
       <%= render partial: "commitments_list", locals: {slots: @slots, type: "hosting"} %>
   <% end %>
   <% if !@appointment_slots.empty? %>
-  <div class="commitments">  
-    <h4>Office hours you are attending:</h4>
+  <div class="commitments">
+    <h4>Office Hours You Are Attending</h4>
   </div>
       <%= render partial: "commitments_list", locals: {slots: @appointment_slots, type: "appointment"} %>
   <% end %>
+  <div class="feedbacks">  
+    <h4>Your Posted Reviews</h4>
+  </div>
+      <%= render partial: "feedbacks/user_index", locals: {user: @user} %>
 </ul>
