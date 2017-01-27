@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 before_action :require_login, only: :show
+
   def new
     if current_user
       redirect_to user_path(current_user)
@@ -11,6 +12,8 @@ before_action :require_login, only: :show
   def show
       @user = User.find_by(id: params[:id])
       correct_user(@user)
+      @slots = @user.slots
+      @appointment_slots = @user.appointment_slots
   end
 
   def create

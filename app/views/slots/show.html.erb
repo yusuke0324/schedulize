@@ -16,11 +16,24 @@
       <%= link_to "Join!", "/slots/#{@slot.id}/appointments", method: :post %>
     </div>
   <% end %>
-  <% if current_user != nil && @mentor == current_user %>
+  <% if @mentor == current_user %>
+  <div id="student-list">
+      <h5>Students attending:</h5>
+      <% if @students.empty?%>
+          none
+        <% else %>
+         <% @students.each do |student|  %>
+          <%= student.first_name %> <%= student.last_name %>
+          <% end %>
+        <% end %>
+
+  </div>
+    <br><br><br>
     <%= link_to 'Delete this Slot', slot_path(@slot),
               method: :delete,
               data: { confirm: 'Are you sure?' } %>
-  <% end %>
+<% end %>
+
 
   <% if already_joined?(@slot) %>
     <p>You have joined, please show up!</p>

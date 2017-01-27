@@ -1,10 +1,24 @@
+<div class="jumbotron">
 <h1> Hi, <%=@user.first_name%>!</h1>
 <h2> Phase: <%=@user.phase%></h2>
-
+</div>
 <!-- New slot -->
-<%= button_to 'New Slot', new_slot_path, method: :get, class: 'btn btn-default' %>
-<h3>Your commitments are ... </h3>
-
-
+<% if current_user.mentor? %>
+<%= button_to 'New Slot', new_slot_path, method: :get, class: 'btn btn-default center-block' %>
+<% end %>
+<div class="commitments">
+  <h3>Your commitments are ... </h3>
+</div>
+  <% if @user.mentor?  %>
+  <div class="commitments">
+    <h4>Office hours you are hosting:</h4>
+  </div>
+      <%= render partial: "commitments_list", locals: {slots: @slots, type: "hosting"} %>
+  <% end %>
+  <% if !@appointment_slots.empty? %>
+  <div class="commitments">  
+    <h4>Office hours you are attending:</h4>
+  </div>
+      <%= render partial: "commitments_list", locals: {slots: @appointment_slots, type: "appointment"} %>
+  <% end %>
 </ul>
-

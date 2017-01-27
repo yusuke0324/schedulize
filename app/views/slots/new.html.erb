@@ -1,5 +1,6 @@
 
 
+</div>
 
 <h3>Creating office hours</h3>
 <%= form_for @slot  do |f| %>
@@ -24,6 +25,16 @@
   Title:
   <%= f.text_field :title%>
   Capacity:
-  <%= f.select :capacity, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5']] %> <br><br>
+  <%= f.select :capacity, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9'], ['10','10']] %> <br><br>
   <%= f.submit :create %>
+<% end %>
+
+<% if flash[:errors] %>
+  <div class="errors">
+    <ul>
+      <%   flash[:errors].each do |key,value| %>
+        <li><%= value.first %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
