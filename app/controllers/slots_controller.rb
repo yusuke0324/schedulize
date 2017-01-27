@@ -3,6 +3,8 @@ class SlotsController < ApplicationController
 
   def show
     @slot = Slot.find(params[:id])
+    @feedback = Feedback.new
+    @feedbacks = @slot.feedbacks
     @mentor = @slot.mentor
     @students = @slot.students
   end
