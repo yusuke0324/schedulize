@@ -4,6 +4,8 @@ class Slot < ApplicationRecord
   has_many :appointments
   has_many :feedbacks
 
+  accepts_nested_attributes_for :feedbacks
+
 
 
 

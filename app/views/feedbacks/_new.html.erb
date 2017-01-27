@@ -1,11 +1,11 @@
-<% if @feedback.errors.any? %>
+<% if errors.any? %>
   <div id="feedback-error-explanation">
     <h2>
-      <%= pluralize(@feedback.errors.count, "error") %> prohibited
+      <%= pluralize(errors.count, "error") %> prohibited
       this feedback from being saved:
     </h2>
     <ul>
-      <% @feedback.errors.full_messages.each do |msg| %>
+      <% errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
     </ul>
@@ -13,29 +13,29 @@
 <% end %>
 
 
-<%= form_for @feedback, remote: true do |f| %>
+<%= form_tag("/slots/#{slot_id}/feedbacks", method: :post) do  %>
   <p id="rating-prompt">
     With 5 being the most helpful, how helpful was this appointment?
   </p>
   <p id="rating-buttons">
-    <%= radio_button_tag(:rating, "1") %>
+    <%= radio_button_tag("feedback[rating]", "1") %>
     <%= label_tag(:feedback_rating, "1") %>
-    <%= radio_button_tag(:rating, "2") %>
+    <%= radio_button_tag("feedback[rating]", "2") %>
     <%= label_tag(:feedback_rating, "2") %>    
-    <%= radio_button_tag(:rating, "3") %>
+    <%= radio_button_tag("feedback[rating]", "3") %>
     <%= label_tag(:feedback_rating, "3") %>
-    <%= radio_button_tag(:rating, "4") %>
+    <%= radio_button_tag("feedback[rating]", "4") %>
     <%= label_tag(:feedback_rating, "4") %>
-    <%= radio_button_tag(:rating, "5") %>
+    <%= radio_button_tag("feedback[rating]", "5") %>
     <%= label_tag(:feedback_rating, "5") %>    
   </p>
   <p id="comment-prompt">
     Use this space to explain your rating in any further detail.
   </p>
   <p id="comment-body">
-    <%= f.text_area :comment %>
+    <%= text_area_tag "feedback[comment]" %>
   </p>
   <p>
-    <%= f.submit 'Thank you for your ASKful feedback'%>
+    <%= submit_tag 'Thank you for your ASKful feedback'%>
   </p>
 <% end %>

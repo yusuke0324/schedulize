@@ -4,5 +4,5 @@ class Feedback < ApplicationRecord
 
 
 	validates :rating, :slot, :user, presence: true
-	validates :slot, :user, uniqueness: true
+	validates :slot, uniqueness: { scope: :user_id }
 end
