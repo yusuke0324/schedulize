@@ -33,6 +33,14 @@ module SlotsHelper
     end
   end
 
+  def your_appointment(slot)
+    slot.appointments.find{|app| app.student == current_user}
+  end
+
+  def already_joined?(slot)
+    slot.students.map(&:id).include?(current_user.id)
+  end
+
   def display_time(datetime)
     t = datetime.to_time
     min = string_increase_for_min(t.min)
@@ -46,7 +54,7 @@ module SlotsHelper
   end
 
   def full?(slot)
-    slot.capacity <= amount_of_students
+    slot.capacity <= amount_of_students(slot)
   end
 
   def sort_by_start(slots)

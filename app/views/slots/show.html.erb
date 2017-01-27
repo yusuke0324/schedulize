@@ -6,17 +6,28 @@
     Start Time: <%= @slot.start_time.month.to_s + "/" + @slot.start_time.day.to_s + " " + display_time(@slot.start_time) %><br>
     End Time: <%= @slot.end_time.month.to_s + "/" + @slot.end_time.day.to_s + " " + display_time(@slot.end_time) %><br>
     This Slot's Mentor: <%= @mentor.first_name %><br>
-    <%=@mentor.first_name%>'s Phase: <%=@mentor.phase%>
+    <%=@mentor.first_name%>'s Phase: <%=@mentor.phase%><br>
+    capacity: <%= amount_of_students(@slot)%>/<%= @slot.capacity %>
   </div>
+  <br><br>
 
-  <% if current_user != nil && @mentor = current_user %>
+  <% if current_user && current_user != @mentor && !full?(@slot) && !already_joined?(@slot) %>
+    <div class="appointment-link">
+      <%= link_to "Join!", "/slots/#{@slot.id}/appointments", method: :post %>
+    </div>
+  <% end %>
+  <% if current_user != nil && @mentor == current_user %>
     <%= link_to 'Delete this Slot', slot_path(@slot),
               method: :delete,
               data: { confirm: 'Are you sure?' } %>
-  <% elsif current_user != nil && current_user.mentor? == false %>
-    <%= link_to "Make an Appointment", new_appointment_path(@appointment) %>
+  <% end %>
+
+  <% if already_joined?(@slot) %>
+    <p>You have joined, please show up!</p>
+    <%= link_to "Remove Appointment", "/appointments/#{your_appointment(@slot).id}", method: :delete %>
   <% end %>
 </section>
+
 
 
 <% if over?(@slot) %>
