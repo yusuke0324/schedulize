@@ -24,7 +24,7 @@
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <span class="navbar-brand">SchedulEyes</span>
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav navbar-right">
         <% if current_user%>
           <li class="links"><%=link_to current_user.first_name, user_path(current_user)%></li>
           <li class="links"><%=link_to "Logout", session_path(current_user), method: :delete%></li>
