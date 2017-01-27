@@ -8,7 +8,6 @@ before_action :require_login, only: :show
     end
   end
 
-
   def show
       @user = User.find_by(id: params[:id])
       correct_user(@user)
@@ -20,6 +19,7 @@ before_action :require_login, only: :show
       auto_login(@user)
       redirect_to user_path(@user)
     else
+      @errors = @user.errors.full_messages
       render action: "new"
     end
   end
@@ -28,9 +28,6 @@ before_action :require_login, only: :show
     @user = User.find_by(id: params[:id])
   end
 
-  def
-
-
   def destroy
     @user = User.find_by(id: params[:id])
     @user.destroy
@@ -38,7 +35,9 @@ before_action :require_login, only: :show
   end
 
   private
+
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :phase, :mentor)
   end
+
 end
