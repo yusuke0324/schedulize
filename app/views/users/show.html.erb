@@ -2,9 +2,10 @@
 <h2> Phase: <%=@user.phase%></h2>
 
 <!-- New slot -->
+<% if current_user.mentor? %>
 <%= button_to 'New Slot', new_slot_path, method: :get, class: 'btn btn-default' %>
+<% end %>
 <h3>Your commitments are ... </h3>
 
 
 </ul>
-

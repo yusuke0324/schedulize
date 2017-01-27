@@ -4,7 +4,12 @@
 <ul>
   <% slot_times.each do |slot|  %>
     <li>
-      <%=link_to "#{slot.hour}:#{string_increase_for_min(slot.min)}", "/slots/new/#{@year}/#{@month}/#{@day}/#{slot.hour}/#{slot.min}", remote: true%>  <br>
+      <% if current_user.mentor? %>
+        <%=link_to "#{slot.hour}:#{string_increase_for_min(slot.min)}", "/slots/new/#{@year}/#{@month}/#{@day}/#{slot.hour}/#{slot.min}", remote: true%>
+      <% else %>
+        <%= slot.hour%>:<%=string_increase_for_min(slot.min)%>
+      <% end %>
+        <br />
     </li>
       <ul>
         <%sort_by_start(slots_in_this_time(@year,@month,@day,slot.hour,slot.min)).each do |office_hours|%>
