@@ -6,6 +6,7 @@ PHASES = [1, 2, 3]
 has_many :feedbacks
 has_many :slots
 has_many :appointments
+has_many :appointment_slots, through: :appointments, source: :slot
 
 
 validates :first_name, presence: true
