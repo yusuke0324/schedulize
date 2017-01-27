@@ -3,36 +3,7 @@ module SlotsHelper
   def amount_of_slots_in_day(date)
     Slot.all.select{|instance| instance.start_time.to_date == date}.length
   end
-
-
-  def month_string(num)
-    if num == 1
-      "January"
-    elsif num == 2
-      "February"
-    elsif num == 3
-      "March"
-    elsif num == 4
-      "April"
-    elsif num == 5
-      "May"
-    elsif num == 6
-      "June"
-    elsif num == 7
-      "July"
-    elsif num == 8
-      "August"
-    elsif num == 9
-      "September"
-    elsif num == 10
-      "October"
-    elsif num == 11
-      "November"
-    elsif num == 12
-      "December"
-    end
-  end
-
+  
   def your_appointment(slot)
     slot.appointments.find{|app| app.student == current_user}
   end
@@ -40,14 +11,6 @@ module SlotsHelper
   def already_joined?(slot)
     slot.students.map(&:id).include?(current_user.id)
   end
-
-  def display_time(datetime)
-    t = datetime.to_time
-    min = string_increase_for_min(t.min)
-    if min.to_s.length == 1 then min = "0" + min end
-    "#{t.hour}:#{min}"
-  end
-
 
   def amount_of_students(slot)
     slot.students.count
@@ -93,5 +56,38 @@ module SlotsHelper
 
   def over?(slot)
     DateTime.now >= slot.end_time
+  end
+
+  def length_of_month(month,year)
+    case month
+    when 1
+      31
+    when 2
+      if year % 4 == 0
+        29
+      else
+        28
+      end
+    when 3
+      31
+    when 4
+      30
+    when 5
+      31
+    when 6
+      30
+    when 7
+      31
+    when 8
+      31
+    when 9
+      30
+    when 10
+      31
+    when 11
+      30
+    when 12
+      31
+    end
   end
 end

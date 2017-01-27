@@ -5,7 +5,8 @@
 
 <!-- List of active slots of the user -->
 <% slots.each do |slot| %>
-  <li>
+
+  <br>
 
   <!-- title -->
   <p><strong>
@@ -13,11 +14,11 @@
   </strong></p>
 
   <!-- time -->
-  <p><%= slot.start_time %> ~ <%= slot.end_time %></p>
+  <p><%= display_date_time(slot.start_time) %> ~ <%= display_date_time(slot.end_time) %></p>
 
-  <% if  type == 'appointment' %>
+  <% if type == 'appointment' %>
     <!-- menter -->
-    <p>Organized by: <%= slot.menter.first_name %> <%= slot.menter.last_name %></p>
+    <p>Organized by: <%= slot.mentor.first_name %> <%= slot.mentor.last_name %></p>
 
     <% else %>
     <!-- capacity -->
@@ -26,5 +27,7 @@
     <!-- delete link -->
     <%= link_to 'Delete', slot_path(slot), method: :delete %>
   <% end %>
-  </li>
+  <br>
+  <br>
+  <br>
 <% end %>
