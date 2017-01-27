@@ -6,6 +6,12 @@
 <%= button_to 'New Slot', new_slot_path, method: :get, class: 'btn btn-default' %>
 <% end %>
 <h3>Your commitments are ... </h3>
-
-
+  <% if @user.mentor?  %>
+    <h4>Office hours you are hosting:</h4>
+      <%= render partial: "commitments_list", locals: {slots: @slots, type: "hosting"} %>
+  <% end %>
+  <% if !@appointment_slots.empty? %>
+    <h4>Office hours you are attending:</h4>
+      <%= render partial: "commitments_list", locals: {slots: @appointment_slots, type: "appointment"} %>
+  <% end %>
 </ul>
