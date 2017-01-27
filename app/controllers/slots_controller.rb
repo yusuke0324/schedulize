@@ -12,6 +12,16 @@ class SlotsController < ApplicationController
 
   def new
     @slot = Slot.new
+    @hour = params[:hour]
+    @minute = params[:minute]
+    @day = params[:day]
+    @month = params[:month]
+    @year = params[:year]
+    respond_to do |format|
+      format.js {}
+      format.html
+      format.json { render json: @resource }
+    end
   end
 
   def create

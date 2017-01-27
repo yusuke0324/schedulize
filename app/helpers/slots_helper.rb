@@ -83,4 +83,7 @@ module SlotsHelper
     Slot.all.select{|slot| slot.start_time <= t && slot.end_time  >= t}
   end
 
+  def over?(slot)
+    DateTime.now >= slot.end_time
+  end
 end

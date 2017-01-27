@@ -19,18 +19,22 @@
 </section>
 
 
-
+<% if over?(@slot) %>
 <h2>Feedback</h2>
 <section class="feedback-container">
   <div class="feedback-list-section">
     <ul class="feedback-list">
-      <% @slot.feedbacks.each do |feedback| %>
-        <li id="feedback-<%= feedback.id %>">
-          <%= link_to feedback.comment, feedback_path(feedback) %>       
-        </li>
+      <%  if @slot.feedbacks %>
+        <% @slot.feedbacks.each do |feedback| %>
+          <li id="feedback-<%= feedback.id %>">
+            <%= link_to feedback.comment, feedback_path(feedback) %>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   <div>
+
+
 
   <h3>Leave Some Feedback</h3>
   <div class="new-feedback">
@@ -39,13 +43,13 @@
       <%= radio_button_tag(:rating, "1") %>
       <%= label_tag(:feedback_rating, "1") %>
       <%= radio_button_tag(:rating, "2") %>
-      <%= label_tag(:feedback_rating, "2") %>    
+      <%= label_tag(:feedback_rating, "2") %>
       <%= radio_button_tag(:rating, "3") %>
       <%= label_tag(:feedback_rating, "3") %>
       <%= radio_button_tag(:rating, "4") %>
       <%= label_tag(:feedback_rating, "4") %>
       <%= radio_button_tag(:rating, "5") %>
-      <%= label_tag(:feedback_rating, "5") %>    
+      <%= label_tag(:feedback_rating, "5") %>
     </p>
     <p>
       <%= f.label :comment %>
@@ -55,4 +59,4 @@
     <% end %>
   </div>
 </section>
-
+<% end %>
