@@ -11,7 +11,7 @@
   </div>
   <br><br>
 
-  <% if current_user && current_user != @mentor && !full?(@slot) && !already_joined?(@slot) %>
+  <% if current_user && current_user != @mentor && !full?(@slot) && !already_joined?(@slot) && !over?(@slot) %>
     <div class="appointment-link">
       <%= link_to "Join!", "/slots/#{@slot.id}/appointments", method: :post %>
     </div>
@@ -43,7 +43,7 @@
 
 
 
-<% if over?(@slot) %>
+<% if over?(@slot) && already_joined?(@slot) || current_user == @slot.mentor  %>
 <h2>Feedback</h2>
 <section class="feedback-container">
   <div class="feedback-list-section">

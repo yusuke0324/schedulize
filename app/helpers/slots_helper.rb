@@ -55,7 +55,7 @@ module SlotsHelper
   end
 
   def over?(slot)
-    DateTime.now >= slot.end_time
+    DateTime.now.day > slot.end_time.day
   end
 
   def length_of_month(month,year)
