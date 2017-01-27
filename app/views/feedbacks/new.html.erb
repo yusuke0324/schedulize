@@ -1,0 +1,19 @@
+<h1> Leave Some Feedback </h1>
+
+<div id="feedback-form">
+  <% if @feedback.errors.any? %>
+    <div id="feedback-error-explanation">
+      <h2>
+        <%= pluralize(@feedback.errors.count, "error") %> prohibited
+        this feedback from being saved:
+      </h2>
+      <ul>
+        <% @feedback.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= render partial: 'feedbacks/new',
+    locals: {errors: [], slot_id: @slot} %>
+</div>

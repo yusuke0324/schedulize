@@ -11,7 +11,7 @@
   </div>
   <br><br>
 
-  <% if current_user && current_user != @mentor && !full?(@slot) && !already_joined?(@slot) %>
+  <% if current_user && current_user != @mentor && !full?(@slot) && !already_joined?(@slot) && !over?(@slot) %>
     <div class="appointment-link">
       <%= link_to "Join!", "/slots/#{@slot.id}/appointments", method: :post %>
     </div>
@@ -43,7 +43,7 @@
 
 
 
-<% if over?(@slot) %>
+<% if over?(@slot) && already_joined?(@slot) || current_user == @slot.mentor  %>
 <h2>Feedback</h2>
 <section class="feedback-container">
   <div class="feedback-list-section">
@@ -56,31 +56,11 @@
         <% end %>
       <% end %>
     </ul>
-  <div>
-
-
-
-  <h3>Leave Some Feedback</h3>
+  </div>
   <div class="new-feedback">
-    <%= form_for feedbacks_path do |f| %>
-    <p>
-      <%= radio_button_tag(:rating, "1") %>
-      <%= label_tag(:feedback_rating, "1") %>
-      <%= radio_button_tag(:rating, "2") %>
-      <%= label_tag(:feedback_rating, "2") %>
-      <%= radio_button_tag(:rating, "3") %>
-      <%= label_tag(:feedback_rating, "3") %>
-      <%= radio_button_tag(:rating, "4") %>
-      <%= label_tag(:feedback_rating, "4") %>
-      <%= radio_button_tag(:rating, "5") %>
-      <%= label_tag(:feedback_rating, "5") %>
-    </p>
-    <p>
-      <%= f.label :comment %>
-      <%= f.text_area :comment %>
-    </p>
-    <%= f.submit 'Thank you for your ASKful feedback'%>
-    <% end %>
+    <h3>Leave Some Feedback</h3>
+    <%= render partial: 'feedbacks/new',
+    locals: {errors: [], slot_id: @slot.id, feedback: @feedback} %>
   </div>
 </section>
 <% end %>

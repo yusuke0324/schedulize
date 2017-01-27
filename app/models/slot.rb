@@ -4,9 +4,14 @@ class Slot < ApplicationRecord
   has_many :appointments
   has_many :feedbacks
 
+
+  accepts_nested_attributes_for :feedbacks
+
+
   validate :start_must_be_before_end_time
   validate :start_must_be_after_now
   validates :title, presence: true
+
 
 private
   def start_must_be_before_end_time

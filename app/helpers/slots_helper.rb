@@ -3,7 +3,7 @@ module SlotsHelper
   def amount_of_slots_in_day(date)
     Slot.all.select{|instance| instance.start_time.to_date == date}.length
   end
-  
+
   def your_appointment(slot)
     slot.appointments.find{|app| app.student == current_user}
   end
@@ -24,7 +24,7 @@ module SlotsHelper
     slots.sort_by(&:start_time).reverse
   end
 
-  def slot_times
+  def slot_times(year,month,day)
     times = []
     minutes = 0
     hours = 9
@@ -33,7 +33,7 @@ module SlotsHelper
         hours += 1
         minutes = 0
       end
-        t = Time.new(2002, 10, 31, hours, minutes, 0)
+        t = DateTime.new(year, month, day, hours, minutes, 0)
         times << t
       minutes += 30
     end
@@ -55,7 +55,7 @@ module SlotsHelper
   end
 
   def over?(slot)
-    DateTime.now >= slot.end_time
+    DateTime.now.day > slot.end_time.day
   end
 
   def length_of_month(month,year)
